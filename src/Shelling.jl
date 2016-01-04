@@ -3,6 +3,7 @@ export Agent, simulate, simulate_random
 
 using Distances
 using Gadfly
+using StatsBase
 
 immutable Agent
   kind::Integer
@@ -69,7 +70,8 @@ function simulate(
   info("Starting simulation")
   n = length(agents)
   num_iterations = 0
-  num_unhappy_agents = length(agents)
+  unhappy_agents = Int64[]
+  num_unhappy_agents = n
 
   old_agents = Vector{Agent}(n)
   while num_unhappy_agents > 0 && num_iterations < max_iterations
@@ -84,10 +86,15 @@ function simulate(
         agents[i] = old_agents[i]
       end
     end
+    push!(unhappy_agents, num_unhappy_agents)
     num_iterations += 1
     info("Iteration $num_iterations: $num_unhappy_agents unhappy agents")
   end
   info("Converged at $num_iterations iterations")
+
+  # Print summary statistics
+  info("Unhappy agents:")
+  StatsBase.describe(unhappy_agents)
 end
 
 """
