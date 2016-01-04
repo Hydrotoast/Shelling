@@ -1,5 +1,5 @@
-**ShellingSegregation** is a Julia implementation for simulating Shelling's
-Segregation Model.
+**Shelling** is a Julia implementation for simulating Shelling's Segregation
+Model.
 
 Usage
 =====
