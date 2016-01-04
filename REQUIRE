@@ -1,4 +1,4 @@
 julia 0.4
-Distances 0.8.6
+Distances 0.2.1
 Gadfly 0.4.0
 StatsBase 0.7.4
